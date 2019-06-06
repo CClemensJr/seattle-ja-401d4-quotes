@@ -5,15 +5,23 @@ package quotes;
 
 import com.google.gson.Gson;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
 //    public String getGreeting() {
 //        return "Hello world.";
 //    }
 //
-//    public static void main(String[] args) {
-//        System.out.println(new App().getGreeting());
-//    }
+    public static void main(String[] args) throws FileNotFoundException {
+        Gson gson = new Gson();
+        List<Quote> quotes = new ArrayList<>();
+
+        Quote[] aQuote = gson.fromJson(new FileReader("json/recentquotes.json"), Quote[].class);
+
+        System.out.println(aQuote[0].getAuthor());
+    }
 }
 
