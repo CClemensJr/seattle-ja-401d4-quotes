@@ -1,5 +1,5 @@
 # Quotes
-> Provide a brief description of what the application does
+> This application displays a random quote every time the application is run.
 
 ## How to Use
-> Include clear instructions of how to install dependencies and run the app after someone clones the repo.
+> Clone the repo, build the project, run the app!

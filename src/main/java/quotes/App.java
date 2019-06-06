@@ -7,14 +7,8 @@ import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class App {
-//    public String getGreeting() {
-//        return "Hello world.";
-//    }
-//
     public static void main(String[] args) throws FileNotFoundException {
         Gson gson = new Gson();
         Quote[] aQuote = gson.fromJson(new FileReader("json/recentquotes.json"), Quote[].class);
