@@ -19,9 +19,9 @@ public class App {
         Gson gson = new Gson();
         Quote[] aQuote = gson.fromJson(new FileReader("json/recentquotes.json"), Quote[].class);
 
-        for (int i = 0; i < aQuote.length; i++) {
-            System.out.println(aQuote[i].getText() + "\n\t- " + aQuote[i].getAuthor());
-        }
+        int randIndex = (int) (Math.random() * (aQuote.length - 0) + 1);
+
+        System.out.println(aQuote[randIndex].getText() + "\n\t- " + aQuote[randIndex].getAuthor());
     }
 }
 
