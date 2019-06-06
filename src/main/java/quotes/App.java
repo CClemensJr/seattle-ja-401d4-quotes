@@ -17,11 +17,11 @@ public class App {
 //
     public static void main(String[] args) throws FileNotFoundException {
         Gson gson = new Gson();
-        List<Quote> quotes = new ArrayList<>();
-
         Quote[] aQuote = gson.fromJson(new FileReader("json/recentquotes.json"), Quote[].class);
 
-        System.out.println(aQuote[0].getAuthor());
+        for (int i = 0; i < aQuote.length; i++) {
+            System.out.println(aQuote[i].getText() + "\n\t- " + aQuote[i].getAuthor());
+        }
     }
 }
 

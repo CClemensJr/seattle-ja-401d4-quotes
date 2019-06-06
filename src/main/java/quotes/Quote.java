@@ -5,15 +5,15 @@ public class Quote {
  * Instance Variables
  * */
     private String author;
-    private String quote;
+    private String text;
 
 
 /********
  * Constructors
  * */
-    public Quote(String author, String quote) {
+    public Quote(String author, String text) {
         this.author = author;
-        this.quote = quote;
+        this.text = text;
     }
 
 
@@ -21,8 +21,8 @@ public class Quote {
  * Getters/Setters
  * */
     public String getAuthor() { return this.author; }
-    public String getQuote() { return this.quote; }
+    public String getText() { return this.text; }
 
     public void setAuthor(String author) { this.author = author; }
-    public void setQuote(String quote) { this.quote = quote; }
+    public void setText(String quote) { this.text = text; }
 }
