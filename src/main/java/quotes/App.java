@@ -3,12 +3,17 @@
  */
 package quotes;
 
-public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
+import com.google.gson.Gson;
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-    }
+import java.io.FileReader;
+
+public class App {
+//    public String getGreeting() {
+//        return "Hello world.";
+//    }
+//
+//    public static void main(String[] args) {
+//        System.out.println(new App().getGreeting());
+//    }
 }
+
