@@ -13,7 +13,7 @@ public class App {
         String file = "json/recentquotes.json";
         Quote quote = getQuote(file);
 
-        //System.out.println(aQuote[randIndex].getText() + "\n\t- " + aQuote[randIndex].getAuthor());
+        printQuote(quote);
     }
 
     public static Quote getQuote(String path) throws FileNotFoundException {
@@ -23,7 +23,9 @@ public class App {
         return aQuote[randomizer(aQuote.length)];
     }
 
-
+    public static void printQuote(Quote quote) {
+        System.out.println(quote.getText() + "\n\t- " + quote.getAuthor());
+    }
 
     public static int randomizer(int length) {
         return (int) (Math.random() * (length - 0) + 1);
