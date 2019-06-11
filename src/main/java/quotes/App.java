@@ -13,16 +13,20 @@ public class App {
         String file = "json/recentquotes.json";
         Quote quote = getQuote(file);
 
-        int randIndex = (int) (Math.random() * (aQuote.length - 0) + 1);
-
-        System.out.println(aQuote[randIndex].getText() + "\n\t- " + aQuote[randIndex].getAuthor());
+        //System.out.println(aQuote[randIndex].getText() + "\n\t- " + aQuote[randIndex].getAuthor());
     }
 
     public static Quote getQuote(String path) throws FileNotFoundException {
         Gson gson = new Gson();
         Quote[] aQuote = gson.fromJson(new FileReader(path), Quote[].class);
 
-        return aQuote[randomizer()];
+        return aQuote[randomizer(aQuote.length)];
+    }
+
+
+
+    public static int randomizer(int length) {
+        return (int) (Math.random() * (length - 0) + 1);
     }
 }
 
