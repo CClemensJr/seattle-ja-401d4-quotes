@@ -15,7 +15,9 @@ public class App {
 
         printQuote(quote);
     }
-
+/***********
+ *
+ * */
     public static Quote getQuote() throws FileNotFoundException {
         try {
             URL url = new URL("https://ron-swanson-quotes.herokuapp.com/v2/quotes");
@@ -27,7 +29,7 @@ public class App {
             Gson gson = new Gson();
             String[] quoteString = gson.fromJson(line, String[].class);
 
-            Quote quote = new Quote("Ron Swanson", quoteString[0])
+            Quote quote = new Quote("Ron Swanson", quoteString[0]);
 
             return quote;
         } catch (Exception e) {
@@ -39,7 +41,6 @@ public class App {
         }
     }
 
-    //public static
 
     public static void printQuote(Quote quote) {
         System.out.println(quote.getText() + "\n\t- " + quote.getAuthor());
