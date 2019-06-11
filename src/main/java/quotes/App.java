@@ -10,12 +10,19 @@ import java.io.FileReader;
 
 public class App {
     public static void main(String[] args) throws FileNotFoundException {
-        Gson gson = new Gson();
-        Quote[] aQuote = gson.fromJson(new FileReader("json/recentquotes.json"), Quote[].class);
+        String file = "json/recentquotes.json";
+        Quote quote = getQuote(file);
 
         int randIndex = (int) (Math.random() * (aQuote.length - 0) + 1);
 
         System.out.println(aQuote[randIndex].getText() + "\n\t- " + aQuote[randIndex].getAuthor());
+    }
+
+    public static Quote getQuote(String path) throws FileNotFoundException {
+        Gson gson = new Gson();
+        Quote[] aQuote = gson.fromJson(new FileReader(path), Quote[].class);
+
+        return aQuote[randomizer()];
     }
 }
 
