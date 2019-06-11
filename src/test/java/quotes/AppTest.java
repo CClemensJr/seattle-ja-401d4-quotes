@@ -4,11 +4,28 @@
 package quotes;
 
 import org.junit.Test;
+
+import java.io.FileNotFoundException;
+
 import static org.junit.Assert.*;
+import static quotes.App.getQuote;
 
 public class AppTest {
-//    @Test public void testAppHasAGreeting() {
-//        App classUnderTest = new App();
-//        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
-//    }
+    @Test
+    public void canGetOnlineQuote() throws FileNotFoundException {
+        Quote test = getQuote();
+
+        String expected = "Ron Swanson";
+        String actual = test.getAuthor();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void canGetRandomQuotes() throws FileNotFoundException {
+        Quote test1 = getQuote();
+        Quote test2 = getQuote();
+
+        assertTrue(test1.getText() != test2.getText());
+    }
 }
