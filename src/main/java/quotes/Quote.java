@@ -11,6 +11,8 @@ public class Quote {
 /********
  * Constructors
  * */
+    public Quote() {}
+
     public Quote(String author, String text) {
         this.author = author;
         this.text = text;

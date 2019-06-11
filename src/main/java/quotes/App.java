@@ -5,17 +5,62 @@ package quotes;
 
 import com.google.gson.Gson;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class App {
     public static void main(String[] args) throws FileNotFoundException {
-        Gson gson = new Gson();
-        Quote[] aQuote = gson.fromJson(new FileReader("json/recentquotes.json"), Quote[].class);
+        Quote quote = getQuote();
 
-        int randIndex = (int) (Math.random() * (aQuote.length - 0) + 1);
+        printQuote(quote);
+    }
+/***********
+ * GetQuote()
+ *
+ * This method attempts to grab a quote from the online api otherwise it grabs a local quote
+ * */
+    public static Quote getQuote() throws FileNotFoundException {
+        try {
+            URL url = new URL("https://ron-swanson-quotes.herokuapp.com/v2/quotes");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        System.out.println(aQuote[randIndex].getText() + "\n\t- " + aQuote[randIndex].getAuthor());
+            BufferedReader reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+            StringBuffer results = new StringBuffer();
+            String line = reader.readLine();
+            Gson gson = new Gson();
+            String[] quoteString = gson.fromJson(line, String[].class);
+
+            Quote quote = new Quote("Ron Swanson", quoteString[0]);
+
+            return quote;
+        } catch (Exception e) {
+            String file = "json/recentquotes.json";
+            Gson gson = new Gson();
+            Quote[] aQuote = gson.fromJson(new FileReader(file), Quote[].class);
+
+            return aQuote[randomizer(aQuote.length)];
+        }
+    }
+
+
+/***********
+ * PrintQuote()
+ *
+ * This method takes a quote object and prints it.
+ * */
+    public static void printQuote(Quote quote) {
+        System.out.println(quote.getText() + "\n\t- " + quote.getAuthor());
+    }
+
+
+/***********
+ * randomizer()
+ *
+ * This method returns a random number.
+ * */
+    public static int randomizer(int length) {
+        return (int) (Math.random() * (length - 0) + 1);
     }
 }
 
