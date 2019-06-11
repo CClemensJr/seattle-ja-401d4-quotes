@@ -16,7 +16,9 @@ public class App {
         printQuote(quote);
     }
 /***********
+ * GetQuote()
  *
+ * This method attempts to grab a quote from the online api otherwise it grabs a local quote
  * */
     public static Quote getQuote() throws FileNotFoundException {
         try {
@@ -42,10 +44,21 @@ public class App {
     }
 
 
+/***********
+ * PrintQuote()
+ *
+ * This method takes a quote object and prints it.
+ * */
     public static void printQuote(Quote quote) {
         System.out.println(quote.getText() + "\n\t- " + quote.getAuthor());
     }
 
+
+/***********
+ * randomizer()
+ *
+ * This method returns a random number.
+ * */
     public static int randomizer(int length) {
         return (int) (Math.random() * (length - 0) + 1);
     }
