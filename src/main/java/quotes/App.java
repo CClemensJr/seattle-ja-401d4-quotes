@@ -5,23 +5,42 @@ package quotes;
 
 import com.google.gson.Gson;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class App {
     public static void main(String[] args) throws FileNotFoundException {
-        String file = "json/recentquotes.json";
-        Quote quote = getQuote(file);
+        Quote quote = getQuote();
 
         printQuote(quote);
     }
 
-    public static Quote getQuote(String path) throws FileNotFoundException {
-        Gson gson = new Gson();
-        Quote[] aQuote = gson.fromJson(new FileReader(path), Quote[].class);
+    public static Quote getQuote() throws FileNotFoundException {
+        try {
+            URL url = new URL("https://ron-swanson-quotes.herokuapp.com/v2/quotes");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        return aQuote[randomizer(aQuote.length)];
+            BufferedReader reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+
+            Gson gson = new Gson();
+            Quote[] aQuote = gson.fromJson(reader, Quote[].class);
+
+            return aQuote[0];
+        } catch (Exception e) {
+            //System.out.println(e);
+
+            String file = "json/recentquotes.json";
+            Gson gson = new Gson();
+            Quote[] aQuote = gson.fromJson(new FileReader(file), Quote[].class);
+
+            return aQuote[randomizer(aQuote.length)];
+        }
+
+        //return null;
     }
+
+    //public static
 
     public static void printQuote(Quote quote) {
         System.out.println(quote.getText() + "\n\t- " + quote.getAuthor());
