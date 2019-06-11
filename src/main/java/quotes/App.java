@@ -22,22 +22,21 @@ public class App {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
-
+            StringBuffer results = new StringBuffer();
+            String line = reader.readLine();
             Gson gson = new Gson();
-            Quote[] aQuote = gson.fromJson(reader, Quote[].class);
+            String[] quoteString = gson.fromJson(line, String[].class);
 
-            return aQuote[0];
+            Quote quote = new Quote("Ron Swanson", quoteString[0])
+
+            return quote;
         } catch (Exception e) {
-            //System.out.println(e);
-
             String file = "json/recentquotes.json";
             Gson gson = new Gson();
             Quote[] aQuote = gson.fromJson(new FileReader(file), Quote[].class);
 
             return aQuote[randomizer(aQuote.length)];
         }
-
-        //return null;
     }
 
     //public static
